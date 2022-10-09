@@ -23,8 +23,11 @@ let main = () => {
     } */
 
   rl.on("line", async (input) => {
-    input = input.split(" ");
-    switch (input[0]) {
+    //input = input.split(" ");
+    input = input.match(/\S+/g) || []  //   Handle whitespaces in between string
+
+    switch (input[0].toLowerCase()) {
+        //  When 'create' line is encountered
       case "create":
         try {
           const res = createParkingLot(input[1]);
@@ -34,6 +37,7 @@ let main = () => {
         }
         break;
 
+        //  When 'park' line is encountered
       case "park":
         try {
           const res = parkCar(input[1]);
@@ -43,6 +47,7 @@ let main = () => {
         }
         break;
 
+        //  When 'leave' line is encountered
       case "leave":
         try {
           const res = leaveParking(input[1], input[2]);
@@ -59,6 +64,7 @@ let main = () => {
         }
         break;
 
+        //  When 'status' line is encountered
       case "status":
         try {
           status();
